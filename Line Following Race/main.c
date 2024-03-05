@@ -108,11 +108,8 @@ int main(void){ uint32_t heart=0;
           case 0x1F:
               Input = 0x08;
             break;
-          case 0x12:
-              Input = 0x09;
-            break;
           default:
-              Input = 0x0A;
+              Input = 0x09;
             break;
         }
     //WaitForInterrupt();
