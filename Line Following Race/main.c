@@ -49,18 +49,18 @@ typedef const struct State State_t;
 
 //Motor speed values are in percentages
 State_t fsm[12]={
-  {100, 100, 500, { Center_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Center, Center}},
-  {30, 100, 500, { Center_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Left, Left }},
-  {0, 100, 500, { Center_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Left, Hard_Left }},
-  {100, 30, 500, { Center_LR, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Right, Right }},
-  {100, 0, 500, { Center_LR, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Right }},
-  {0, 0, 500, { Stop, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Stop, Stop }},
-  {100, 100, 500, { Turn_LR, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Center_LL, Center_LL }},
-  {100, 100, 500, { Turn_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Center_LR, Center_LR }},
-  {0, 100, 500, { Center_LL2, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Turn_LL, Turn_LL }},
-  {100, 0, 500, { CenterLR2, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Turn_LR, Turn_LR }},
-  {100, 100, 500, { Stop, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Right, Center_LL2 }},
-  {100, 100, 500, { Stop, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Left, CenterLR2 }}
+  {100, 100, 500, { Center_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Center, Center}},       //Center
+  {30, 100, 500, { Center_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Left, Left }},           //Left
+  {0, 100, 500, { Center_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Left, Hard_Left }},  //Hard Left
+  {100, 30, 500, { Center_LR, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Right, Right }},         //Right
+  {100, 0, 500, { Center_LR, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Right }},            //Hard Right
+  {0, 0, 500, { Stop, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Stop, Stop }},                   //stop
+  {100, 100, 500, { Turn_LR, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Center_LL, Center_LL }},  //Center Lost Left
+  {100, 100, 500, { Turn_LL, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Center_LR, Center_LR }},  //Center Lost Right
+  {0, 100, 500, { Center_LL2, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Turn_LL, Turn_LL }},     //Turn Lost Left
+  {100, 0, 500, { CenterLR2, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Turn_LR, Turn_LR }},      //Turn Lost Right
+  {100, 100, 500, { Stop, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Right, Center_LL2 }},   //Center Lost Left 2
+  {100, 100, 500, { Stop, Center, Right, Hard_Right, Left, Hard_Left, Hard_Right, Hard_Left, Hard_Left, CenterLR2 }}      //Center Lost Right 2
 };
 State_t *Spt;  // pointer to the current state
 uint8_t Input;
