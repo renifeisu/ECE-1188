@@ -48,8 +48,10 @@ policies, either expressed or implied, of the FreeBSD Project.
 
 #include <stdint.h>
 #include "msp.h"
-#include "../inc/CortexM.h"
-#include "../inc/PWM.h"
+//#include "../inc/CortexM.h"
+//#include "../inc/PWM.h"
+#include "C:\ti\tirslk_max_1_00_02\inc\CortexM.h"
+#include "C:\ti\tirslk_max_1_00_02\inc\PWM.h"
 
 // *******Lab 13 solution*******
 

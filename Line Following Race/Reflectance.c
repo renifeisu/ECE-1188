@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "msp432.h"
-#include "..\inc\Clock.h"
+#include "C:\ti\tirslk_max_1_00_02\inc\Clock.h"
 
 void Reflectance_Init(void){
 
@@ -99,7 +99,8 @@ int32_t Reflectance_Position(uint8_t data){
     int32_t top_sum = 0;
     int32_t bottom_sum = 0;
     int32_t wi[8] = {-33400,-23800,-14300,-4800,4800,14300,23800,33400};
-    for(int32_t i = 0; i<8; i++){
+    int32_t i;
+    for(i = 0; i<8; i++){
         uint8_t data2 = data >> i;
         data2 &= 0x01;
         top_sum += (data2*wi[7-i]);
