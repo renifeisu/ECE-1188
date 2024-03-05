@@ -1,26 +1,18 @@
-//#include <stdint.h>
-//#include "msp.h"
-//#include "../inc/Clock.h"
-//#include "../inc/LaunchPad.h"
-//#include "../inc/TExaS.h"
-//
-//#include "..\inc\bump.h"
-//#include "..\inc\Reflectance.c"
-//#include "..\inc\SysTickInts.c"
-//#include "..\inc\CortexM.h"
-//#include "..\inc\LaunchPad.h"
-//#include "..\inc\FlashProgram.h"
-//
-
+#include <stdint.h>
 #include "msp.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\CortexM.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\SysTickInts.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\Clock.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\bump.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\Reflectance.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\FlashProgram.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\LaunchPad.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\MotorSimple.h"
+#include "../inc/Clock.h"
+#include "../inc/LaunchPad.h"
+#include "../inc/TExaS.h"
+
+#include "..\inc\bump.h"
+#include "..\inc\Reflectance.c"
+#include "..\inc\SysTickInts.c"
+#include "..\inc\CortexM.h"
+#include "..\inc\LaunchPad.h"
+#include "..\inc\FlashProgram.h"
+
+
+
 
 // Linked data structure
 struct State {
