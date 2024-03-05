@@ -20,7 +20,8 @@
 #include "C:\ti\tirslk_max_1_00_02\inc\Reflectance.h"
 #include "C:\ti\tirslk_max_1_00_02\inc\FlashProgram.h"
 #include "C:\ti\tirslk_max_1_00_02\inc\LaunchPad.h"
-#include "C:\ti\tirslk_max_1_00_02\inc\MotorSimple.h"
+#include "C:\ti\tirslk_max_1_00_02\inc\PWM.h"
+#include "C:\ti\tirslk_max_1_00_02\inc\Motor.h"
 
 
 // Linked data structure
@@ -69,8 +70,41 @@ uint32_t RM_out;
 
 
 void SysTick_Handler(void){ // every 1ms
+        Input = Reflectance_Read(1000);    // read sensors
+        switch(Input){
+              case 0x00:
+                  Input = 0x00;
+                break;
+              case 0x04:
+                  Input = 0x01;
+                break;
+              case 0x06:
+                  Input = 0x02;
+                break;
+              case 0x01:
+                  Input = 0x03;
+                break;
+              case 0x08:
+                  Input = 0x04;
+                break;
+              case 0x10:
+                  Input = 0x05;
+                break;
+              case 0x0F:
+                  Input = 0x06;
+                break;
+              case 0x07:
+                  Input = 0x07;
+                break;
+              case 0x1F:
+                  Input = 0x08;
+                break;
+              default:
+                  Input = 0x09;
+                break;
+            }
 
-
+    Spt = Spt->next[Input];       // next depends on input and state
 }
 
 
@@ -81,52 +115,19 @@ int main(void){ uint32_t heart=0;
   SysTick_Init(48000,2);
   EnableInterrupts();
   Reflectance_Init();
+  EnableInterrupts();
+  Motor_Init();
+  Bump_Init();
 
   Spt = Center;
 
   while(1){
-      LM_out = Spt->LM;            // set output from FSM
-      RM_out = Spt->RM;
+    LM_out = Spt->LM;            // set output from FSM
+    RM_out = Spt->RM;
+    Motor_Forward(LM_out/100 * 7500, RM_out/100 * 7500);
     //Clock_Delay1ms(Spt->delay);   // wait
-    Input = Reflectance_Read(1000);    // read sensors
-    switch(Input){
-          case 0x00:
-              Input = 0x00;
-            break;
-          case 0x04:
-              Input = 0x01;
-            break;
-          case 0x06:
-              Input = 0x02;
-            break;
-          case 0x01:
-              Input = 0x03;
-            break;
-          case 0x08:
-              Input = 0x04;
-            break;
-          case 0x10:
-              Input = 0x05;
-            break;
-          case 0x0F:
-              Input = 0x06;
-            break;
-          case 0x07:
-              Input = 0x07;
-            break;
-          case 0x1F:
-              Input = 0x08;
-            break;
-          default:
-              Input = 0x09;
-            break;
-        }
-    //WaitForInterrupt();
-
-    Spt = Spt->next[Input];       // next depends on input and state
-    heart = heart^1;
-    LaunchPad_LED(heart);         // optional, debugging heartbeat
-    Clock_Delay1ms(10);
+    PORT4_IRQHandler();
+    WaitForInterrupt();
   }
 }
 
