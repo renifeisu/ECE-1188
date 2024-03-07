@@ -108,7 +108,7 @@ void b_center(void){
     // finish
     Motor_Stop();
     LaunchPad_LED(0);
-    P2->OUT = 0x04; // Red LED
+    P2->OUT = 0x04; // Blue LED
 }
 
 void b_left(void){
@@ -130,7 +130,7 @@ void b_left(void){
     // finish
     Motor_Stop();
     LaunchPad_LED(0);
-    P2->OUT = 0x04; // Red LED
+    P2->OUT = 0x04; // Blue LED
 }
 
 void b_right(void){
@@ -152,7 +152,7 @@ void b_right(void){
     // finish
     Motor_Stop();
     LaunchPad_LED(0);
-    P2->OUT = 0x04; // Red LED
+    P2->OUT = 0x04; // Blue LED
 }
 
 void b_none(void){
