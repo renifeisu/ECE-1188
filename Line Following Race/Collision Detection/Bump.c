@@ -47,7 +47,12 @@
 //// P4.0 Bump0, right side of robot
 //
 //#include <stdint.h>
+//#include <stdio.h>
 //#include "msp.h"
+//#include "C:\ti\tirslk_max_1_00_02\inc\Clock.h"
+//#include "C:\ti\tirslk_max_1_00_02\inc\PWM.h"
+//#include "C:\ti\tirslk_max_1_00_02\inc\Motor.h"
+//
 //// Initialize Bump sensors
 //// Make six Port 4 pins inputs
 //// Activate interface pullup
@@ -83,206 +88,106 @@
 //    result |= (~P4->IN&0xE0)>>2; // 0b--543210
 //    return result; // replace this line
 //}
-//// we do not care about critical section/race conditions
-//// triggered on touch, falling edge
-//void PORT4_IRQHandler(void){
-//    // write this as part of Lab 14
-//    uint8_t status;
-//    status = P4->IV;  // 2*(n+1) where n is highest priority
-//    switch(status){
-//            case 0x01:          // 0b00000001
-//                P2->OUT = 0x01; // Red LED
-//                break;
-//            case 0x02:          // 0b00000010
-//                P2->OUT = 0x02; // Green LED
-//                break;
-//            case 0x03:          // 0b00000011
-//                P2->OUT = 0x02; // Green LED
-//                break;
-//            case 0x04:          // 0b00000100
-//                P2->OUT = 0x03; // Yellow LED
-//                break;
-//            case 0x05:          // 0b00000101
-//                P2->OUT = 0x03; // Yellow LED
-//                break;
-//            case 0x06:          // 0b00000110
-//                P2->OUT = 0x03; // Yellow LED
-//                break;
-//            case 0x07:          // 0b00000111
-//                P2->OUT = 0x02; // Green LED
-//                break;
-//            case 0x08:          // 0b00001000
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x09:          // 0b00001001
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x0A:          // 0b00001010
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x0B:          // 0b00001011
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x0C:          // 0b00001100
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x0D:          // 0b00001101
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x0E:          // 0b00001110
-//                P2->OUT = 0x03; // Yellow LED
-//                break;
-//            case 0x0F:          // 0b00001111
-//                P2->OUT = 0x03; // Yellow LED
-//                break;
-//            case 0x10:          // 0b00010000
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x11:          // 0b00010001
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x12:          // 0b00010010
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x13:          // 0b00010011
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x14:          // 0b00010100
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x15:          // 0b00010101
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x16:          // 0b00010110
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x17:          // 0b00010111
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x18:          // 0b00011000
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x19:          // 0b00011001
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x1A:          // 0b00011010
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x1B:          // 0b00011011
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x1C:          // 0b00011100
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x1D:          // 0b00011101
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x1E:          // 0b00011110
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x1F:          // 0b00011111
-//                P2->OUT = 0x03; // Yellow LED
-//                break;
-//            case 0x20:          // 0b00100000
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x21:          // 0b00100001
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x22:          // 0b00100010
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x23:          // 0b00100011
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x24:          // 0b00100100
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x25:          // 0b00100101
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x26:          // 0b00100110
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x27:          // 0b00100111
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x28:          // 0b00101000
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x29:          // 0b00101001
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x2A:          // 0b00101010
-//                P2->OUT = 0x06; // Pink LED
-//                break;
-//            case 0x2B:          // 0b00101011
-//                P2->OUT = 0x06; // Pink LED
-//                break;
-//            case 0x2C:          // 0b00101100
-//                P2->OUT = 0x06; // Blue LED
-//                break;
-//            case 0x2D:          // 0b00101101
-//                P2->OUT = 0x06; // Blue LED
-//                break;
-//            case 0x2E:          // 0b00101110
-//                P2->OUT = 0x06; // Blue LED
-//                break;
-//            case 0x2F:          // 0b00101111
-//                P2->OUT = 0x06; // Yellow LED
-//                break;
-//            case 0x30:          // 0b00110000
-//                P2->OUT = 0x06; // Sky Blue LED
-//                break;
-//            case 0x31:          // 0b00111001
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x32:          // 0b00111010
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x33:          // 0b00111011
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x34:          // 0b00111100
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x35:          // 0b00111101
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x36:          // 0b00111110
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x37:          // 0b00111111
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x38:          // 0b00111000
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x39:          // 0b00111001
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x3A:          // 0b00111010
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x3B:          // 0b00111011
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x3C:          // 0b00111100
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x3D:          // 0b00111101
-//                P2->OUT = 0x05; // Pink LED
-//                break;
-//            case 0x3E:          // 0b00111110
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            case 0x3F:          // 0b00111111
-//                P2->OUT = 0x04; // Blue LED
-//                break;
-//            default:
-//                P2->OUT &= ~0xFF; // LED off
-//                break;
-//        }
 //
+//void b_center(void){
+//    // any center/random bumper triggers
+//    LaunchPad_LED(1);
+//    P2->OUT = 0x01; // Red LED
+//    // stop
+//    Motor_Stop();
+//    Clock_Delay1ms(500);
+//    // go back
+//    Motor_Backward(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(500);
+//    // turn 180
+//    Motor_Left(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(4000);
+//    // go forward
+//    Motor_Forward(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(500);
+//    // finish
+//    Motor_Stop();
+//    LaunchPad_LED(0);
+//    P2->OUT = 0x04; // Red LED
 //}
 //
+//void b_left(void){
+//    // left bumper triggers
+//    LaunchPad_LED(1);
+//    P2->OUT = 0x02; // Green LED
+//    // stop
+//    Motor_Stop();
+//    Clock_Delay1ms(500);
+//    // go back
+//    Motor_Backward(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(500);
+//    // turn right
+//    Motor_Right(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(2000);
+//    // go forward
+//    Motor_Forward(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(500);
+//    // finish
+//    Motor_Stop();
+//    LaunchPad_LED(0);
+//    P2->OUT = 0x04; // Red LED
+//}
+//
+//void b_right(void){
+//    // right bumper triggered
+//    LaunchPad_LED(1);
+//    P2->OUT = 0x03; // Yellow LED
+//    // stop
+//    Motor_Stop();
+//    Clock_Delay1ms(500); //1s
+//    // go back
+//    Motor_Backward(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(500);
+//    // turn left
+//    Motor_Left(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(2000);
+//    // go forward
+//    Motor_Forward(0.5*7500, 0.5*7500);
+//    Clock_Delay1ms(500);
+//    // finish
+//    Motor_Stop();
+//    LaunchPad_LED(0);
+//    P2->OUT = 0x04; // Red LED
+//}
+//
+//void b_none(void){
+//    LaunchPad_LED(0);
+//    P2->OUT = 0x04; // Blue LED
+//}
+//// PORT4_IRQHandler
+//// we do not care about critical section/race conditions
+//// triggered on touch, falling edge
+//volatile uint8_t triggered = 0;
+//void PORT4_IRQHandler(void){
+//    // write this as part of Lab 14
+//    uint32_t status;
+//    status = P4->IV;  // 2*(n+1) where n is highest priority
+//    printf("Interrupt Vector: %02X\n", status);
+//    switch(status){
+//        case 0x02:
+//        case 0x06:
+//            b_right();
+//            break;
+//        case 0x0E:
+//        case 0x10:
+//            b_left();
+//            break;
+//        case 0x08:
+//        case 0x0C:
+//            b_center();
+//            break;
+//        default:
+//            b_none();
+//            break;
+//
+//    }
+//    triggered = 1;
+//    P4->IFG &= ~0xED; // Clear flag
+//    Clock_Delay1ms(500); // Delay for 500ms
+//    triggered = 0;
+//}
