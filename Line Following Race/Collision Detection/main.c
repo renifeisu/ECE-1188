@@ -91,7 +91,7 @@
 //        Output = Spt->state;
 //        output_handler(Output);
 //        Clock_Delay1ms(Spt->delay);
-//        Spt = Spt->next[Input];
+//        //Spt = Spt->next[Input];
 //        MainCount++;
 //    }
 //}

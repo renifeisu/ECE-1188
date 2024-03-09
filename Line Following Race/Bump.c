@@ -96,17 +96,17 @@ void b_center(void){
     // stop
     Motor_Stop();
     Clock_Delay1ms(500);
-    // go back
-    Motor_Backward(0.5*7500, 0.5*7500);
+    /*// go back
+    Motor_Backward(0.5 * 7500, 0.5 * 7500);
     Clock_Delay1ms(500);
     // turn 180
     Motor_Left(0.5*7500, 0.5*7500);
-    Clock_Delay1ms(4000);
+    Clock_Delay1ms(1000);
     // go forward
-    Motor_Forward(0.5*7500, 0.5*7500);
-    Clock_Delay1ms(500);
+    Motor_Forward(1000, 1000);
+    Clock_Delay1ms(200);
     // finish
-    Motor_Stop();
+    Motor_Stop(); */
     LaunchPad_LED(0);
     P2->OUT = 0x04; // Blue LED
 }
@@ -118,15 +118,15 @@ void b_left(void){
     // stop
     Motor_Stop();
     Clock_Delay1ms(500);
-    // go back
-    Motor_Backward(0.5*7500, 0.5*7500);
+    /*// go back
+    Motor_Backward(0.5 * 7500, 0.5 * 7500);
     Clock_Delay1ms(500);
     // turn right
     Motor_Right(0.5*7500, 0.5*7500);
-    Clock_Delay1ms(2000);
-    // go forward
-    Motor_Forward(0.5*7500, 0.5*7500);
     Clock_Delay1ms(500);
+    // go forward
+    Motor_Forward(1000, 1000);
+    Clock_Delay1ms(200); */
     // finish
     Motor_Stop();
     LaunchPad_LED(0);
@@ -140,17 +140,17 @@ void b_right(void){
     // stop
     Motor_Stop();
     Clock_Delay1ms(500); //1s
-    // go back
-    Motor_Backward(0.5*7500, 0.5*7500);
+    /*// go back
+    Motor_Backward(0.5 * 7500, 0.5 * 7500);
     Clock_Delay1ms(500);
     // turn left
-    Motor_Left(0.5*7500, 0.5*7500);
-    Clock_Delay1ms(2000);
-    // go forward
-    Motor_Forward(0.5*7500, 0.5*7500);
+    Motor_Left(0.5 * 7500, 0.5 * 7500);
     Clock_Delay1ms(500);
+    // go forward
+    Motor_Forward(1000, 1000);
+    Clock_Delay1ms(200);
     // finish
-    Motor_Stop();
+    Motor_Stop(); */
     LaunchPad_LED(0);
     P2->OUT = 0x04; // Blue LED
 }
@@ -171,11 +171,11 @@ void PORT4_IRQHandler(void){
     switch(status){
         case 0x02:
         case 0x06:
-            b_right();
+            b_left();
             break;
         case 0x0E:
         case 0x10:
-            b_left();
+            b_right();
             break;
         case 0x08:
         case 0x0C:
