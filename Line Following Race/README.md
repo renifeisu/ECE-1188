@@ -30,5 +30,4 @@ We will recreate a new FSM controller that leverages our modifications and is ro
 
 # Other
 > [!NOTE]
-> The other folders contain files that were automatically generated when creating/running the project. </break>
-        Files outside the folders encompassed the updated versions of our modifications and were used in the race on Thursday.
+> The other folders contain files that were automatically generated when creating/running the project. Files outside the folders encompassed the updated versions of our modifications and were used in the race on Thursday. 
